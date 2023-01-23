@@ -151,9 +151,9 @@ data = pd.concat(dflist)
 
 first_data = data.groupby('Station').head(1).set_index('Station')
 first_time = first_data['Date'][0]
-text_time_water = data.groupby('Station').head(26).set_index('Station').tail(1)['Date'][0]
-text_time_scirocco = data.groupby('Station').head(16).set_index('Station').tail(1)['Date'][0]
-text_time_bora = data.groupby('Station').head(10).set_index('Station').tail(1)['Date'][0]
+text_time_water = data.groupby('Station').head(36).set_index('Station').tail(1)['Date'][0]
+text_time_scirocco = data.groupby('Station').head(26).set_index('Station').tail(1)['Date'][0]
+text_time_bora = data.groupby('Station').head(20).set_index('Station').tail(1)['Date'][0]
 
 last_data = data.groupby('Station').tail(1).set_index('Station')
 last_time = last_data['Date'][0]
