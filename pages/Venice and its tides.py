@@ -32,11 +32,7 @@ st.write(""" ###### Have fun! :) """)
 
 
 
-######################################
-StationNames=['Venice','San Nicolò','Alberoni','Pellestrina','Chioggia']
-NomiStazioni = ['Punta Salute Canal Grande','Diga sud Lido','Diga nord Malamocco','Diga sud Chioggia','Chioggia Vigo']
-urls_json = ['https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json',
-             'https://dati.venezia.it/sites/default/files/dataset/opendata/vento.json']
+##### functions ############
 
 def GetJson(url_json,NomiStazioni,StationNames):
     df_json = pd.read_json(url_json)
@@ -46,13 +42,6 @@ def GetJson(url_json,NomiStazioni,StationNames):
     df_json = df_json.set_index('stazione')
     df_json = df_json.rename({df_json.columns[0]:'Water Level'}, axis=1) 
     return df_json
-
-#raccolta ed estrazione dati
-urls=['https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Punta_Salute.html',
-      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Lido.html',
-      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Nord_Malamocco.html',
-      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Chioggia.html',
-      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Chioggia_Citta.html']
 
 
 def GetData(StationNames,urls):
@@ -105,7 +94,13 @@ def PlotMultiLine(waterwind):
 
     lines = base.mark_line().encode(
         size=alt.condition(~highlight, alt.value(1), alt.value(3)),
-        color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors) ) )
+        color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors) , legend=alt.Legend(
+        orient='none',
+        legendX=0, legendY=-30,
+        direction='horizontal',
+        titleAnchor='middle',
+        title=' ') )
+        )
 
     if waterwind == 'Water':
                 hor_line = alt.Chart(pd.DataFrame({'y': [110]})).mark_rule(color='black').encode(y='y')
@@ -116,11 +111,11 @@ def PlotMultiLine(waterwind):
     elif waterwind == 'WindDir':
         hor_line = alt.Chart(pd.DataFrame({'y': [60,135]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
         text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [63,138], 'note': ['Bora','Scirocco']})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
-        chart = points + lines + hor_line + text
+        phantom_line = alt.Chart(pd.DataFrame({'y': [159]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
+        chart = points + lines + hor_line + text + phantom_line
 
 
     return chart.configure_axis(gridColor='#969696',gridDash=[2, 2],gridOpacity=0.5)
-
 
 
 def highlight_water(value):
@@ -134,14 +129,31 @@ def highlight_water(value):
         color = 'white'
     return 'background-color: %s' % color
 
+
+
+
+
+#### extract data ####
+StationNames=['Venice','San Nicolò','Alberoni','Pellestrina','Chioggia']
+NomiStazioni = ['Punta Salute Canal Grande','Diga sud Lido','Diga nord Malamocco','Diga sud Chioggia','Chioggia Vigo']
+urls_json = ['https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json',
+             'https://dati.venezia.it/sites/default/files/dataset/opendata/vento.json']
+
+urls=['https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Punta_Salute.html',
+      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Lido.html',
+      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Nord_Malamocco.html',
+      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Chioggia.html',
+      'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Chioggia_Citta.html']
+
+
 dflist = GetData(StationNames,urls)
 data = pd.concat(dflist)
 
 first_data = data.groupby('Station').head(1).set_index('Station')
 first_time = first_data['Date'][0]
-text_time_water = data.groupby('Station').head(25).set_index('Station').tail(1)['Date'][0]
-text_time_scirocco = data.groupby('Station').head(14).set_index('Station').tail(1)['Date'][0]
-text_time_bora = data.groupby('Station').head(10).set_index('Station').tail(1)['Date'][0]
+text_time_water = data.groupby('Station').head(20).set_index('Station').tail(1)['Date'][0]
+text_time_scirocco = data.groupby('Station').head(10).set_index('Station').tail(1)['Date'][0]
+text_time_bora = data.groupby('Station').head(7).set_index('Station').tail(1)['Date'][0]
 
 last_data = data.groupby('Station').tail(1).set_index('Station')
 last_time = last_data['Date'][0]
@@ -154,13 +166,13 @@ last_wind.columns = ['Wind Velocity [km/h]','Wind Direction [degrees]']
 last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
 
+#### plot ####
 col1, col2 = st.columns(2)
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 
-
 with col2:
-    st.write('## Live data')
+    st.write('### Live Data')
     st.dataframe(styler_water,width=500, height=40)
     st.dataframe(last_wind,width=340, height=105)
 
