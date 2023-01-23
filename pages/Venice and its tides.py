@@ -82,7 +82,7 @@ def GetData(StationNames,urls):
 def PlotMultiLine(waterwind):
     if waterwind == 'Water':
                 StationNames=['Venice','San Nicolò','Alberoni','Pellestrina','Chioggia']
-                colors = ['white','#17becf','#b2df8a','#b15928','grey']
+                colors = ['black','#17becf','#b2df8a','#b15928','grey']
                 ylabel = 'Water level [cm]'
     elif (waterwind == 'WindVel') | (waterwind == 'WindDir') :
                 StationNames=['San Nicolò','Pellestrina']
@@ -108,14 +108,14 @@ def PlotMultiLine(waterwind):
         color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors) ) )
 
     if waterwind == 'Water':
-                hor_line = alt.Chart(pd.DataFrame({'y': [110]})).mark_rule(color='white').encode(y='y')
-                text = text = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [115], 'note': 'City walking level'})).mark_text(color='white').encode(x='x:T',y='y:Q',text='note:N')
+                hor_line = alt.Chart(pd.DataFrame({'y': [110]})).mark_rule(color='black').encode(y='y')
+                text = text = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [115], 'note': 'City walking level'})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
                 chart = points + lines + hor_line + text
     elif waterwind == 'WindVel': 
                 chart = points + lines
     elif waterwind == 'WindDir':
-        hor_line = alt.Chart(pd.DataFrame({'y': [60,135]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
-        text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [65,140], 'note': ['Bora','Scirocco']})).mark_text(color='white').encode(x='x:T',y='y:Q',text='note:N')
+        hor_line = alt.Chart(pd.DataFrame({'y': [60,135]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
+        text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [65,140], 'note': ['Bora','Scirocco']})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
         chart = points + lines + hor_line + text
 
 
@@ -131,7 +131,7 @@ def highlight_water(value):
     elif value >= 140:
         color = 'red'
     else:
-        color = '#2e4463'
+        color = 'white'
     return 'background-color: %s' % color
 
 dflist = GetData(StationNames,urls)
