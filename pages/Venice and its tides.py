@@ -108,7 +108,8 @@ def PlotMultiLine(waterwind):
                 text = text = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [105], 'note': 'City walking level'})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
                 hor_line_sanmarco = alt.Chart(pd.DataFrame({'y': [80]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
                 text_sanmarco = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [85], 'note': 'San Marco square'})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
-                chart = points + lines + hor_line + text + hor_line_sanmarco + text_sanmarco
+                phantom_line = alt.Chart(pd.DataFrame({'y': [120]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
+                chart = points + lines + hor_line + text + hor_line_sanmarco + text_sanmarco + phantom_line
     elif waterwind == 'WindVel': 
                 chart = points + lines
     elif waterwind == 'WindDir':
