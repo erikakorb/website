@@ -51,6 +51,7 @@ def GetData(StationNames,urls):
         df=pd.read_html(html)[0]
 
         df['Date'] = df['Data'].apply(lambda x: datetime.strptime(x,"%Y-%m-%d %H:%M:%S")) # datetime conversion
+        df['Date'] = df['Date'].dt.tz_localize('CET')  # fix bug for altair visualization, that assumes dates are in UTC
         df['Day'] = df['Date'].dt.date
         df['Hour'] = df['Date'].dt.strftime('%H:%M')
         df = df.rename({df.columns[1]:'Water'}, axis=1) 
