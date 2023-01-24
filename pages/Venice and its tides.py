@@ -114,7 +114,7 @@ def PlotMultiLine(waterwind):
                 chart = points + lines
     elif waterwind == 'WindDir':
         hor_line = alt.Chart(pd.DataFrame({'y': [60,135]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
-        text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [63,138], 'note': ['Bora','Scirocco']})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
+        text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [65,140], 'note': ['Bora','Scirocco']})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
         phantom_line = alt.Chart(pd.DataFrame({'y': [159]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
         chart = points + lines + hor_line + text + phantom_line
 
@@ -178,7 +178,7 @@ with col1:
 with col2:
     st.write('### Live Data')
     st.dataframe(styler_water,width=500, height=40)
-    st.dataframe(last_wind,width=340, height=105)
+    st.dataframe(last_wind,width=340, height=108)
 
 
 col3, col4= st.columns(2)
