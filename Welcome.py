@@ -17,4 +17,4 @@ st.write( """  ###### At work, I play with stars and binaries by means of numeri
 st.write(
     """  ######  If you are curious to see some fancy astrophysical project or a nice dashboard on Venice high tides, feel free to browse the sidebar. """)
     
-st.image('VenicePartialEclipse.jpg', caption='In a hot summer evening of July 2018, a partial eclipsing Moon, Mars, and the San Marco bell tower met together...')
+st.image('VenicePartialEclipse.jpg', caption='In a warm summer evening of July 2018, a partial eclipsing Moon, Mars, and the San Marco bell tower met together...')
