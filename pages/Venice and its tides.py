@@ -188,8 +188,8 @@ with col3:
 
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
-    df = px.data.wind()
-    fig = px.scatter_polar(df, r="frequency", theta="direction",
-                       color="strength", color_discrete_sequence=px.colors.sequential.Plasma_r)
+    df = data.loc[data['Station'] == 'Pellestrina'].columns
+    fig = px.scatter_polar(df, r="Hour", theta="WindDir",
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.Plasma_r)
 
     st.plotly_chart(fig, theme="streamlit")
