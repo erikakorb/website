@@ -201,32 +201,24 @@ with col2:
     st.write('### Live Data')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col2:
     st.write('### Live Data')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col3:
     st.write('### Live Data')
-    #st.dataframe(styler_water,width=500, height=40)
-    #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col4:
     st.write('### Live Data')
-    #st.dataframe(styler_water,width=500, height=40)
-    #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col5:
     st.write('### Live Data')
-    #st.dataframe(styler_water,width=500, height=40)
-    #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col6:
     st.write('### Live Data')
-    #st.dataframe(styler_water,width=500, height=40)
-    #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 
 def PolarPlot(NameStation):
     df = data.loc[data['Station'] == NameStation]
