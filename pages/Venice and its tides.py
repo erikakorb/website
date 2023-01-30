@@ -141,6 +141,18 @@ def PlotMultiLine(waterwind):
 
     return chart.configure_axis(gridColor='#969696',gridDash=[2, 2],gridOpacity=0.5)
 
+def PolarPlot(NameStation):
+    df = data.loc[data['Station'] == NameStation]
+    df = WindConvert(df,'WindDir')
+    df['newcol'] = df.index
+    df = df.rename({'WindVel':'km/h'}, axis=1) 
+    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+                       color="km/h", hover_data=[df.Data, df.WindDir, df['km/h']])
+    fig.update_layout(title = NameStation, showlegend = False,    polar = dict(
+        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
+        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
+    fig.update_traces(hovertemplate='%{customdata[0]} <br> Direction = %{customdata[1]}° <br> Velocity = %{customdata[2]:.2f} km/h')
+    return fig
 
 def highlight_water(value):
     if (value >= 90) & (value < 110):
@@ -152,7 +164,6 @@ def highlight_water(value):
     else:
         color = 'white'
     return 'background-color: %s' % color
-
 
 def WindConvert(df,colname):
     df.loc[(((df[colname] > 348.75) & (df[colname] <= 360)) | ((df[colname] >= 0) & (df[colname] <= 11.25))), 'Direction'] = 'N'
@@ -172,6 +183,7 @@ def WindConvert(df,colname):
     df.loc[((df[colname] > 303.75) & (df[colname] <= 326.25)), 'Direction'] = 'NW'
     df.loc[((df[colname] > 326.25) & (df[colname] <= 348.75)), 'Direction'] = 'NNW'
     return df
+
 
 
 
@@ -207,15 +219,13 @@ last_wind = last_data[['WindVel','WindDir']]
 copylastwind = last_wind.copy()
 last_wind.columns = ['Wind velocity [km/h]','Wind direction [degrees]']
 last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
-
 last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
-col1, colph, col2, col3,col4,col5 = st.columns([5,0.5,1,1,1,1])
+col1, colphantom, col2, col3,col4,col5 = st.columns([5,0.5,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
-
 with col2:
     st.write('#### Venice')
     #st.dataframe(styler_water,width=500, height=40)
@@ -235,24 +245,11 @@ with col5:
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
-def PolarPlot(NameStation):
-    df = data.loc[data['Station'] == NameStation]
-    df = WindConvert(df,'WindDir')
-    df['newcol'] = df.index
-    df = df.rename({'WindVel':'km/h'}, axis=1) 
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="km/h", hover_data=[df.Data, df.WindDir, df['km/h']])
-    fig.update_layout(title = NameStation, showlegend = False,    polar = dict(
-        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
-        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    fig.update_traces(hovertemplate='%{customdata[0]} <br> Direction = %{customdata[1]}° <br> Velocity = %{customdata[2]:.2f} km/h')
-    return fig
 
-colN, colNN= st.columns(2)
-with colN:
+colW1, colW2= st.columns(2)
+with colW1:
     #st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
-    st.plotly_chart(PolarPlot('Pellestrina'), theme=None)
-
-with colNN:
+    st.plotly_chart(PolarPlot('San Nicolò'), theme=None, use_container_width=True)
+with colW2:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
-    st.plotly_chart(PolarPlot('San Nicolò'), theme=None)
+    st.plotly_chart(PolarPlot('Pellestrina'), theme=None, use_container_width=True)
