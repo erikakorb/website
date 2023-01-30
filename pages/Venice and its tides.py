@@ -211,11 +211,12 @@ with col4:
     df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd, custom_data=['Direction','WindVel'],labels=['WDir','WVel'])
     fig.update_layout(showlegend = False,    polar = dict(
-        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18 h','-12 h','-3 h']) ,
-        angularaxis = dict(tickvals = [0,90,180,270], ticktext = ['N','E','S','W'])    )   )
-    st.plotly_chart(fig, theme="streamlit")
+        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
+        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
+    fig.update_traces(hovertemplate='Direction:%{WDir} <br> Velocity:%{WVel}')
+    st.plotly_chart(fig, theme="none")
 
 
 
@@ -225,4 +226,7 @@ with col4:
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
 
-    st.plotly_chart(fig, theme="streamlit")
+    fig.update_layout(showlegend = False,    polar = dict(
+        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
+        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
+    st.plotly_chart(fig, theme="none")
