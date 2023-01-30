@@ -188,7 +188,7 @@ with col3:
 
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
-    df = data.loc[data['Station'] == 'Pellestrina'].columns
+    df = data.loc[data['Station'] == 'Pellestrina']
     fig = px.scatter_polar(df, r="Water", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.Plasma_r)
 
