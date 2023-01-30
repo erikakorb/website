@@ -136,6 +136,24 @@ def highlight_water(value):
     return 'background-color: %s' % color
 
 
+def WindConvert(df,colname):
+    df.loc[(((df[colname] > 348.75) & (df[colname] <= 360)) | ((df[colname] >= 0) & (df[colname] <= 11.25))), 'Direction'] = 'N'
+    df.loc[((df[colname] > 11.25) & (df[colname] <= 33.75)), 'Direction'] = 'NNE'
+    df.loc[((df[colname] > 33.75) & (df[colname] <= 56.25)), 'Direction'] = 'NE'
+    df.loc[((df[colname] > 56.25) & (df[colname] <= 78.75)), 'Direction'] = 'ENE'
+    df.loc[((df[colname] > 78.75) & (df[colname] <= 101.25)), 'Direction'] = 'E'
+    df.loc[((df[colname] > 101.25) & (df[colname] <= 123.75)), 'Direction'] = 'ESE'
+    df.loc[((df[colname] > 123.75) & (df[colname] <= 146.25)), 'Direction'] = 'SE'
+    df.loc[((df[colname] > 146.25) & (df[colname] <= 168.75)), 'Direction'] = 'SSE'
+    df.loc[((df[colname] > 168.75) & (df[colname] <= 191.25)), 'Direction'] = 'S'
+    df.loc[((df[colname] > 191.25) & (df[colname] <= 213.75)), 'Direction'] = 'SSW'
+    df.loc[((df[colname] > 213.75) & (df[colname] <= 236.25)), 'Direction'] = 'SW'
+    df.loc[((df[colname] > 236.25) & (df[colname] <= 258.75)), 'Direction'] = 'WSW'
+    df.loc[((df[colname] > 258.75) & (df[colname] <= 281.25)), 'Direction'] = 'W'
+    df.loc[((df[colname] > 281.25) & (df[colname] <= 303.75)), 'Direction'] = 'WNW'
+    df.loc[((df[colname] > 303.75) & (df[colname] <= 326.25)), 'Direction'] = 'NW'
+    df.loc[((df[colname] > 326.25) & (df[colname] <= 348.75)), 'Direction'] = 'NNW'
+    return df
 
 
 
@@ -190,16 +208,18 @@ with col3:
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
     df = data.loc[data['Station'] == 'Pellestrina']
+    df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+    fig = px.scatter_polar(df, r="newcol", theta="Direction",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
 
     st.plotly_chart(fig, theme="streamlit")
 
 
     df = data.loc[data['Station'] == 'San Nicolò']
+    df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+    fig = px.scatter_polar(df, r="newcol", theta="Direction",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
 
     st.plotly_chart(fig, theme="streamlit")
