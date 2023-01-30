@@ -204,7 +204,7 @@ last_water.columns = ['Water level [cm]']
 styler_water = last_water.T.style.applymap(highlight_water)
 
 last_wind = last_data[['WindVel','WindDir']]
-copylastwind = last_wind
+copylastwind = last_wind.copy()
 last_wind.columns = ['Wind velocity [km/h]','Wind direction [degrees]']
 last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
