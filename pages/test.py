@@ -1,5 +1,5 @@
 import plotly.express as px
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import streamlit as st
 ##df = px.data.wind()
 ##fig = px.scatter_polar(df, r="frequency", theta="direction",
