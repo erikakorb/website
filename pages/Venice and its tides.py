@@ -96,7 +96,7 @@ def PlotMultiLine(waterwind):
 
     lines = base.mark_line().encode(
         size=alt.condition(~highlight, alt.value(1), alt.value(3)),
-        color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors, nice={'interval': 'day', 'step': 7}) ,
+        color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors, nice={'interval': 'hour', 'step': 2}) ,
                         legend=alt.Legend(
         orient='none',
         legendX=10, legendY=-10,
@@ -190,7 +190,8 @@ with col3:
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
     df = data.loc[data['Station'] == 'Pellestrina']
+    df['newcol'] = df.index
     fig = px.scatter_polar(df, r="WindVel", theta="WindDir",
-                       color="Date", color_discrete_sequence=px.colors.sequential.Plasma_r)
+                       color="newcol", color_discrete_sequence=px.colors.sequential.Plasma_r)
 
     st.plotly_chart(fig, theme="streamlit")
