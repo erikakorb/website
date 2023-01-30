@@ -1,6 +1,8 @@
 import streamlit as st
 #from streamlit_autorefresh import st_autorefresh
 import plotly.express as px
+import plotly.io as pio
+pio.templates.default = "plotly"
 import altair as alt
 import requests
 import pandas as pd
@@ -211,11 +213,11 @@ with col4:
     df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd, hover_data=[df.Direction,df.WindDir])
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd, hover_data=[df.Hour, df.WindDir, df.WindVel])
     fig.update_layout(showlegend = False,    polar = dict(
         radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
         angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    fig.update_traces(hovertemplate='Direction=%{customdata[0]} <br> Velocity=%{customdata[1]}')
+    fig.update_traces(hovertemplate='Time=%{customdata[0]} <br> Direction=%{customdata[1]}° <br> Velocity=%{customdata[2]} km/h')
     st.plotly_chart(fig, theme=None)
 
 
