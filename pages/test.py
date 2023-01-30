@@ -10,6 +10,6 @@ import streamlit as st
 #create your figure and get the figure object returned
 df = px.data.wind()
 fig = px.scatter_polar(df, r="frequency", theta="direction",
-                       color="strength", color_discrete_sequence=px.colors.sequential.Plasma_r)
-
+                       color="strength", symbol="strength", size="frequency",
+                       color_discrete_sequence=px.colors.sequential.Plasma_r)
 st.plotly_chart(fig, theme="streamlit")
