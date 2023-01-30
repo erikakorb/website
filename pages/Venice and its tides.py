@@ -108,16 +108,16 @@ def PlotMultiLine(waterwind):
     if waterwind == 'Water':
                 hor_line = alt.Chart(pd.DataFrame({'y': [100]})).mark_rule(color='black').encode(y='y')
                 text = text = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [105], 'note': 'City walking level'})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
-                hor_line_sanmarco = alt.Chart(pd.DataFrame({'y': [80]})).mark_rule(strokeDash=[5, 5], color='black',opacity=0.3).encode(y='y')
+                hor_line_sanmarco = alt.Chart(pd.DataFrame({'y': [80]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
                 text_sanmarco = alt.Chart(pd.DataFrame({'x':text_time_water, 'y': [85], 'note': 'San Marco square'})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
-                phantom_line = alt.Chart(pd.DataFrame({'y': [119]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
+                phantom_line = alt.Chart(pd.DataFrame({'y': [119]})).mark_rule(strokeDash=[5, 5], color='white',opacity=0.3).encode(y='y')
                 chart = points + lines + hor_line + text + hor_line_sanmarco + text_sanmarco + phantom_line
     elif waterwind == 'WindVel': 
                 chart = points + lines
     elif waterwind == 'WindDir':
         hor_line = alt.Chart(pd.DataFrame({'y': [60,135]})).mark_rule(strokeDash=[5, 5], color='black').encode(y='y')
         text = text = alt.Chart(pd.DataFrame({'x':[text_time_bora,text_time_scirocco], 'y': [65,140], 'note': ['Bora','Scirocco']})).mark_text(color='black').encode(x='x:T',y='y:Q',text='note:N')
-        phantom_line = alt.Chart(pd.DataFrame({'y': [159]})).mark_rule(strokeDash=[5, 5], color='white').encode(y='y')
+        phantom_line = alt.Chart(pd.DataFrame({'y': [159]})).mark_rule(strokeDash=[5, 5], color='white',opacity=0.3).encode(y='y')
         chart = points + lines + hor_line + text + phantom_line
 
 
@@ -199,7 +199,7 @@ with col4:
 
     df = data.loc[data['Station'] == 'San Nicolò']
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+    fig = px.line_polar(df, r="newcol", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
 
     st.plotly_chart(fig, theme="streamlit")
