@@ -240,12 +240,12 @@ with col3:
     st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-110) + ' cm', delta_color='inverse')
 with col4:
     st.write('#### San Nicolò')
-    st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm')
+    st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm',delta=str(last_water.T['San Nicolò'][0]-110) + ' cm', delta_color='inverse')
     st.metric(label="Wind velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['San Nicolò']))
 with col5:
     st.write('#### Pellestrina')
-    st.metric(label="Water level", value=str(last_water.T['Pellestrina'][0]) + ' cm')
+    st.metric(label="Water level", value=str(last_water.T['Pellestrina'][0]) + ' cm',delta=str(last_water.T['Pellestrina'][0]-110) + ' cm', delta_color='inverse')
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
