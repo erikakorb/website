@@ -193,16 +193,40 @@ last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
 
 #### plot ####
-col1, col2 = st.columns(2)
+col1, col2, col3,col4,col5,col6 = st.columns([5,1,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 
 with col2:
     st.write('### Live Data')
-    st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + 'km/h')
-
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+with col2:
+    st.write('### Live Data')
+    #st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+with col3:
+    st.write('### Live Data')
+    #st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+with col4:
+    st.write('### Live Data')
+    #st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+with col5:
+    st.write('### Live Data')
+    #st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
+with col6:
+    st.write('### Live Data')
+    #st.dataframe(styler_water,width=500, height=40)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h',color='Red')
 
 def PolarPlot(NameStation):
     df = data.loc[data['Station'] == NameStation]
@@ -217,11 +241,11 @@ def PolarPlot(NameStation):
     fig.update_traces(hovertemplate='%{customdata[0]} <br> Direction = %{customdata[1]}° <br> Velocity = %{customdata[2]:.2f} km/h')
     return fig
 
-col3, col4= st.columns(2)
-with col3:
+colN, colNN= st.columns(2)
+with colN:
     #st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
     st.plotly_chart(PolarPlot('Pellestrina'), theme=None)
 
-with col4:
+with colNN:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
     st.plotly_chart(PolarPlot('San Nicolò'), theme=None)
