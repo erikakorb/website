@@ -200,7 +200,8 @@ with col1:
 with col2:
     st.write('### Live Data')
     st.dataframe(styler_water,width=500, height=40)
-    st.dataframe(last_wind,width=340, height=108)
+    #st.dataframe(last_wind,width=340, height=108)
+    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + 'km/h')
 
 
 def PolarPlot(NameStation):
@@ -209,7 +210,7 @@ def PolarPlot(NameStation):
     df['newcol'] = df.index
     df = df.rename({'WindVel':'km/h'}, axis=1) 
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="km/h", template='plotly_dark',hover_data=[df.Data, df.WindDir, df['km/h']])
+                       color="km/h", hover_data=[df.Data, df.WindDir, df['km/h']])
     fig.update_layout(title = NameStation, showlegend = False,    polar = dict(
         radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
         angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
@@ -218,9 +219,9 @@ def PolarPlot(NameStation):
 
 col3, col4= st.columns(2)
 with col3:
-    st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
+    #st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
+    st.plotly_chart(PolarPlot('Pellestrina'), theme=None)
 
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
-    st.plotly_chart(PolarPlot('Pellestrina'), theme=None)
     st.plotly_chart(PolarPlot('San Nicolò'), theme=None)
