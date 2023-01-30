@@ -195,3 +195,11 @@ with col4:
                        color="newcol", color_discrete_sequence=px.colors.sequential.Plasma_r)
 
     st.plotly_chart(fig, theme="streamlit")
+
+
+    df = data.loc[data['Station'] == 'San Nicolò']
+    df['newcol'] = df.index
+    fig = px.scatter_polar(df, r="WindVel", theta="WindDir",
+                       color="newcol", color_discrete_sequence=px.colors.sequential.Plasma_r)
+
+    st.plotly_chart(fig, theme="streamlit")
