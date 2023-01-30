@@ -35,6 +35,10 @@ align = """
         {
             text-align: left;
         }
+        div[data-testid="column"]:nth-of-type(6)
+        {
+            text-align: left;
+        }
         [data-testid="stMetricValue"] {
             font-size: 20px;
             text-align: center;
@@ -223,7 +227,7 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
-col1, colphantom, col2, col3,col4,col5 = st.columns([4.5,0.5,1,1,1,1])
+col1, col2, col3,col4,col5 = st.columns([4.5,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 with col2:
