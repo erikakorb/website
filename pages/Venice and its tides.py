@@ -211,11 +211,11 @@ with col4:
     df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd, custom_data=['Direction','WindVel'],labels=['WDir','WVel'])
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd, hover_data=[df.Direction,df.WindDir])
     fig.update_layout(showlegend = False,    polar = dict(
         radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
         angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    fig.update_traces(hovertemplate='Direction:%{customdata[0][0]} <br> Velocity:%{customdata[0][1]}')
+    fig.update_traces(hovertemplate='Direction=%{customdata[0]} <br> Velocity=%{customdata[1]}')
     st.plotly_chart(fig, theme=None)
 
 
