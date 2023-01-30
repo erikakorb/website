@@ -22,7 +22,10 @@ align = """
         div[data-testid="column"]:nth-of-type(2)
         {
             text-align: center;
-        } 
+        }
+        [data-testid="stMetricValue"] {
+        font-size: 100px;
+        }
     </style>
     """
 st.markdown(align, unsafe_allow_html=True)
