@@ -230,10 +230,10 @@ with col2:
     st.write('#### Venice')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=int(last_water.T['Venice'][0]-110), delta_color='inverse')
+    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=str(last_water.T['Venice'][0]-110) + ' cm \n on city floor', delta_color='inverse')
 with col3:
     st.write('#### Chioggia')
-    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=int(last_water.T['Chioggia'][0]-110), delta_color='inverse')
+    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-110) + ' cm \n on city floor', delta_color='inverse')
 with col4:
     st.write('#### San Nicolò')
     st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm')
@@ -246,7 +246,7 @@ with col5:
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
 
-colW1, colph1, colW2, colph2, colW3 = st.columns([1,0.1,1,0.1,1])
+colW1,  colW2, colW3 = st.columns([1,1,1])
 with colW1:
     st.write(' ')
     st.write(' ')
