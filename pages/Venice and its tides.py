@@ -108,7 +108,7 @@ def PlotMultiLine(waterwind):
         y=alt.Y(f'{waterwind}:Q', title=ylabel)
         )
 
-    points = base.mark_circle().encode( opacity=alt.value(0) ).add_selection( highlight ).properties(
+    points = base.mark_circle().encode( opacity=alt.value(0)).add_selection( highlight ).properties(
         #width=600  # recall that max width page=1200
         )
 
@@ -223,7 +223,7 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
-col1, colphantom, col2, col3,col4,col5 = st.columns([5,0.5,1,1,1,1])
+col1, colphantom, col2, col3,col4,col5 = st.columns([4.5,0.5,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 with col2:
@@ -248,6 +248,7 @@ with col5:
 
 colW1, colph1, colW2, colph2, colW3 = st.columns([1,0.1,1,0.1,1])
 with colW1:
+    st.write(' ')
     st.write(' ')
     st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
 with colW2:
