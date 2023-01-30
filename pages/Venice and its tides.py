@@ -24,7 +24,7 @@ align = """
             text-align: center;
         }
         [data-testid="stMetricValue"] {
-        font-size: 100px;
+        font-size: 10px;
         }
     </style>
     """
