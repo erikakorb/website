@@ -23,9 +23,21 @@ align = """
         {
             text-align: center;
         }
+        div[data-testid="column"]:nth-of-type(3)
+        {
+            text-align: center;
+        }
+        div[data-testid="column"]:nth-of-type(4)
+        {
+            text-align: center;
+        }
+        div[data-testid="column"]:nth-of-type(5)
+        {
+            text-align: center;
+        }
         [data-testid="stMetricValue"] {
-        font-size: 20px;
-        text-align: center;
+            font-size: 20px;
+            text-align: center;
         }
     </style>
     """
@@ -192,8 +204,9 @@ last_water.columns = ['Water level [cm]']
 styler_water = last_water.T.style.applymap(highlight_water)
 
 last_wind = last_data[['WindVel','WindDir']]
-last_wind.columns = ['Wind velocity [km/h]','Wind direction [degrees]']
-last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
+last_wind = WindConvert(last_wind,'WindDir')['Direction']
+last_wind.columns = ['Wind velocity [km/h]','Wind direction [degrees]','Direction']
+last_wind = last_wind.T[['San Nicolò','Pellestrina']]
 
 
 #### plot ####
@@ -213,10 +226,12 @@ with col4:
     st.write('#### San Nicolò')
     st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm')
     st.metric(label="Wind velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
+    st.metric(label="Wind direction", value=str(last_wind['San Nicolò'][2]))
 with col5:
     st.write('#### Pellestrina')
     st.metric(label="Water level", value=str(last_water.T['Pellestrina'][0]) + ' cm')
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
+    st.metric(label="Wind direction", value=str(last_wind['Pellestrina'][2]))
 
 def PolarPlot(NameStation):
     df = data.loc[data['Station'] == NameStation]
