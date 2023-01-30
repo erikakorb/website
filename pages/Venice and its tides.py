@@ -246,7 +246,7 @@ with col5:
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
 
-colW1, colW2, colW3 = st.columns(3)
+colW1, colph1, colW2, colph2, colW3 = st.columns([1,0.5,1,0.5,1])
 with colW1:
     st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
 with colW2:
