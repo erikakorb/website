@@ -203,33 +203,24 @@ with col2:
     st.dataframe(last_wind,width=340, height=108)
 
 
+def PolarPlot(NameStation):
+    df = data.loc[data['Station'] == NameStation]
+    df = WindConvert(df,'WindDir')
+    df['newcol'] = df.index
+    df = df.rename({'WindVel':'km/h'}, axis=1) 
+    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+                       color="km/h", template='plotly_dark',hover_data=[df.Data, df.WindDir, df['km/h']])
+    fig.update_layout(title = NameStation, showlegend = False,    polar = dict(
+        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
+        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
+    fig.update_traces(hovertemplate='%{customdata[0]} <br> Direction = %{customdata[1]}° <br> Velocity = %{customdata[2]:.2f} km/h')
+    return fig
+
 col3, col4= st.columns(2)
 with col3:
     st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
 
 with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
-    df = data.loc[data['Station'] == 'Pellestrina']
-    df = WindConvert(df,'WindDir')
-    df['newcol'] = df.index
-    df = df.rename({'WindVel':'km/h'}, axis=1) 
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="km/h", color_discrete_sequence=px.colors.sequential.GnBu, hover_data=[df.Data, df.WindDir, df['km/h']])
-    fig.update_layout(showlegend = False,    polar = dict(
-        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
-        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    fig.update_traces(hovertemplate='%{customdata[0]} <br> Direction = %{customdata[1]}° <br> Velocity = %{customdata[2]:.2f} km/h')
-    st.plotly_chart(fig, theme=None)
-
-
-
-    df = data.loc[data['Station'] == 'San Nicolò']
-    df = WindConvert(df,'WindDir')
-    df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
-
-    fig.update_layout(showlegend = False,    polar = dict(
-        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
-        angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    st.plotly_chart(fig, theme=None)
+    st.plotly_chart(PolarPlot('Pellestrina'), theme=None)
+    st.plotly_chart(PolarPlot('San Nicolò'), theme=None)
