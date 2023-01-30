@@ -210,10 +210,14 @@ with col4:
     df = data.loc[data['Station'] == 'Pellestrina']
     df = WindConvert(df,'WindDir')
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="Direction",
+    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
 
     st.plotly_chart(fig, theme="streamlit")
+
+    fig.update_layout(showlegend = False,    polar = dict(
+        radialaxis = dict(range=[0, 5], showticklabels=False, ticks=''),
+        angularaxis = dict(thetaunits='Direction')    )   )
 
 
     df = data.loc[data['Station'] == 'San Nicolò']
