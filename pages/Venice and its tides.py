@@ -212,11 +212,11 @@ with col4:
     df['newcol'] = df.index
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
-
+    fig.update_layout(showlegend = False,    polar = dict(
+        radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18 h','-12 h','-3 h']) ,
+        angularaxis = dict(tickvals = [0,90,180,270], ticktext = ['N','E','S','W'])    )   )
     st.plotly_chart(fig, theme="streamlit")
 
-    fig.update_layout(showlegend = False,    polar = dict(
-        angularaxis = dict(tickvals = [0,90,180,270], ticktext = ['N','E','S','W'])    )   )
 
 
     df = data.loc[data['Station'] == 'San Nicolò']
