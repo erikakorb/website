@@ -215,8 +215,8 @@ with col4:
     fig.update_layout(showlegend = False,    polar = dict(
         radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
         angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    fig.update_traces(hovertemplate='Direction:%{WDir} <br> Velocity:%{WVel}')
-    st.plotly_chart(fig, theme="none")
+    fig.update_traces(hovertemplate='Direction:%{customdata[0][0]} <br> Velocity:%{customdata[0][1]}')
+    st.plotly_chart(fig, theme=None)
 
 
 
@@ -229,4 +229,4 @@ with col4:
     fig.update_layout(showlegend = False,    polar = dict(
         radialaxis = dict(tickvals = [72,144,216], ticktext = ['-18h','-12h','-6h']) ,
         angularaxis = dict(tickvals = [0,45,90,135,180,225,270,315], ticktext = ['N','NE','E','SE','S','SW','W','NW'])    )   )
-    st.plotly_chart(fig, theme="none")
+    st.plotly_chart(fig, theme=None)
