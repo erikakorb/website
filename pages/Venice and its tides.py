@@ -246,8 +246,9 @@ with col5:
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
 
-colW1, colph1, colW2, colph2, colW3 = st.columns([1,0.5,1,0.5,1])
+colW1, colph1, colW2, colph2, colW3 = st.columns([1,0.1,1,0.1,1])
 with colW1:
+    st.write(' ')
     st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
 with colW2:
     st.plotly_chart(PolarPlot('San Nicolò'), theme=None, use_container_width=True)
