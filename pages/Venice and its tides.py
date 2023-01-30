@@ -24,7 +24,7 @@ align = """
             text-align: center;
         }
         [data-testid="stMetricValue"] {
-        font-size: 10px;
+        font-size: 14px;
         text-align: center;
         }
     </style>
@@ -197,7 +197,7 @@ last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
 
 #### plot ####
-col1, col2, col3,col4,col5 = st.columns([4,1,1,1,1])
+col1, colph, col2, col3,col4,col5 = st.columns([5,1,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 
@@ -205,10 +205,10 @@ with col2:
     st.write('### Venice')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm')
+    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=last_water.T['Venice'][0]-110, delta_color='inverse')
 with col3:
     st.write('### Chioggia')
-    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm')
+    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=last_water.T['Chioggia'][0]-110, delta_color='inverse')
 with col4:
     st.write('### San Nicolò')
     st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm')
