@@ -216,7 +216,7 @@ with col4:
     st.plotly_chart(fig, theme="streamlit")
 
     fig.update_layout(showlegend = False,    polar = dict(
-        angularaxis = dict(tickvals = [0,90,180,270,360])    )   )
+        angularaxis = dict(tickvals = [0,90,180,270], ticktext = ['N','E','S','W'])    )   )
 
 
     df = data.loc[data['Station'] == 'San Nicolò']
