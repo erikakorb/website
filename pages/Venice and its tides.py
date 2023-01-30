@@ -193,32 +193,26 @@ last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
 
 #### plot ####
-col1, col2, col3,col4,col5,col6 = st.columns([5,1,1,1,1,1])
+col1, col2, col3,col4,col5 = st.columns([4,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 
 with col2:
-    st.write('### Live Data')
+    st.write('### Venice')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
-with col2:
-    st.write('### Live Data')
-    #st.dataframe(styler_water,width=500, height=40)
-    #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
+    st.metric(label="Water", value=str(last_water['Venice'][0]) + ' cm')
 with col3:
-    st.write('### Live Data')
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
+    st.write('### Chioggia')
+    st.metric(label="Water", value=str(last_water['Chioggia'][0]) + ' cm')
 with col4:
-    st.write('### Live Data')
+    st.write('### San Nicolò')
+    st.metric(label="Water", value=str(last_water['San Nicolò'][0]) + ' cm')
     st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
 with col5:
-    st.write('### Live Data')
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
-with col6:
-    st.write('### Live Data')
-    st.metric(label="Velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
+    st.write('### Pellestrina')
+    st.metric(label="Water", value=str(last_water['Pellestrina'][0]) + ' cm')
+    st.metric(label="Velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
 
 def PolarPlot(NameStation):
     df = data.loc[data['Station'] == NameStation]
