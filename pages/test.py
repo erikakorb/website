@@ -8,7 +8,8 @@ import streamlit as st
 ##st.pyplot(fig)
 
 #create your figure and get the figure object returned
-df = px.data.election()
-fig = px.scatter_ternary(df, a="Joly", b="Coderre", c="Bergeron")
+df = px.data.wind()
+fig = px.scatter_polar(df, r="frequency", theta="direction",
+                       color="strength", color_discrete_sequence=px.colors.sequential.Plasma_r)
 
 st.plotly_chart(fig, theme="streamlit")

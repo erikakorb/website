@@ -1,5 +1,6 @@
 import streamlit as st
 #from streamlit_autorefresh import st_autorefresh
+#import plotly.express as px
 import altair as alt
 import requests
 import pandas as pd
@@ -186,4 +187,9 @@ with col3:
     st.altair_chart(PlotMultiLine('WindVel'), use_container_width=True)
 
 with col4:
-    st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
+    #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
+    df = px.data.wind()
+    fig = px.scatter_polar(df, r="frequency", theta="direction",
+                       color="strength", color_discrete_sequence=px.colors.sequential.Plasma_r)
+
+    st.plotly_chart(fig, theme="streamlit")
