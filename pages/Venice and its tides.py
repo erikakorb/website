@@ -192,14 +192,14 @@ with col4:
     df = data.loc[data['Station'] == 'Pellestrina']
     df['newcol'] = df.index
     fig = px.scatter_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.Plasma_r)
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
 
     st.plotly_chart(fig, theme="streamlit")
 
 
     df = data.loc[data['Station'] == 'San Nicolò']
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="WindVel", theta="WindDir",
-                       color="newcol", color_discrete_sequence=px.colors.sequential.Plasma_r)
+    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+                       color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
 
     st.plotly_chart(fig, theme="streamlit")
