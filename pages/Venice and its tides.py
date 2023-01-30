@@ -227,7 +227,7 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
-col1, col2, col3,col4,col5 = st.columns([3.5,1,1,1,1])
+col1, colempty, col2, col3,col4,col5 = st.columns([3.5,0.3,1,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 with col2:
