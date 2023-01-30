@@ -205,7 +205,7 @@ styler_water = last_water.T.style.applymap(highlight_water)
 
 last_wind = last_data[['WindVel','WindDir']]
 last_wind_direction = WindConvert(last_wind,'WindDir')['Direction']
-last_wind.columns = ['Wind velocity [km/h]','Wind direction [degrees]']
+last_wind.columns[:2] = ['Wind velocity [km/h]','Wind direction [degrees]']
 last_wind = last_wind.T[['San Nicolò','Pellestrina']].astype(int)
 
 
