@@ -191,7 +191,7 @@ with col4:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)
     df = data.loc[data['Station'] == 'Pellestrina']
     df['newcol'] = df.index
-    fig = px.scatter_polar(df, r="newcol", theta="WindDir",
+    fig = px.line_polar(df, r="newcol", theta="WindDir",
                        color="WindVel", color_discrete_sequence=px.colors.sequential.YlOrRd)
 
     st.plotly_chart(fig, theme="streamlit")
@@ -199,7 +199,7 @@ with col4:
 
     df = data.loc[data['Station'] == 'San Nicolò']
     df['newcol'] = df.index
-    fig = px.line_polar(df, r="newcol", theta="WindDir",
-                       color="WindVel", color_discrete_sequence=px.colors.sequential.GnBu)
+    fig = px.line_polar(df, r="WindVel", theta="WindDir",
+                       color="newcol", color_discrete_sequence=px.colors.sequential.GnBu)
 
     st.plotly_chart(fig, theme="streamlit")
