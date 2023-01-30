@@ -234,10 +234,10 @@ with col2:
     st.write('#### Venice')
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
-    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=str(last_water.T['Venice'][0]-110) + ' cm </br> on \n city floor', delta_color='inverse')
+    st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=str(last_water.T['Venice'][0]-110) + ' cm', delta_color='inverse')
 with col3:
     st.write('#### Chioggia')
-    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-110) + ' cm <\br> on city floor', delta_color='inverse')
+    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-110) + ' cm', delta_color='inverse')
 with col4:
     st.write('#### San Nicolò')
     st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm')
