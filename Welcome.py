@@ -15,6 +15,6 @@ st.write(
 st.write( """  ###### At work, I play with stars and binaries by means of numerical simulations in the [DemoBlack](https://demoblack.com/) group. In my free time, I play with codes as well. Ah, and I enjoy wandering around my hometown: Venice. """)
     
 st.write(
-    """  ######  If you are curious to see some fancy astrophysical project or a nice dashboard on Venice high tides, feel free to browse the sidebar. """)
+    """  ######  If you are curious to know more on my background, take a look at my [CV] (https://github.com/erikakorb/CV/blob/main/CV.pdf).  If you are here for the fun and you want to see some fancy astrophysical project or a nice dashboard on Venice high tides, feel free to browse the sidebar. """)
     
 st.image('VenicePartialEclipse.jpg', caption='In a warm summer evening of July 2018, a partial eclipsing Moon, Mars, and the San Marco bell tower met together...')
