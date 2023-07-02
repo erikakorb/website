@@ -29,15 +29,23 @@ st.markdown(
                 padding-top: 40px;
                 background-position: 120px 40px;
             }}
-        .sidebar .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            }
         </style>
         """,
         unsafe_allow_html=True,
     )
+
+st.markdown(
+    """
+    <style>
+    .sidebar .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.write("# Congratulations, you found me!")
 
