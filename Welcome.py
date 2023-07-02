@@ -1,9 +1,23 @@
 import streamlit as st
+from PIL import Image
 
 st.set_page_config(
     page_title="Welcome",
     page_icon=" ",layout = 'centered'
 )
+
+def add_logo(logo_path, width, height):
+    """Read and return a resized logo"""
+    logo = Image.open(logo_path)
+    modified_logo = logo.resize((width, height))
+    return modified_logo
+
+my_logo = add_logo(logo_path="Korb_Erika_pic.jpg", width=50, height=60)
+st.sidebar.image(my_logo)
+
+# # OR
+
+# st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
 
 
 st.write("# Congratulations, you found me!")
