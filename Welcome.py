@@ -1,10 +1,6 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="Welcome",
-    page_icon=" ",layout = 'centered'
-)
-
+################################ profile pic
 import io
 from PIL import Image
 import base64
@@ -42,30 +38,15 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-# def add_logo():
-#     st.markdown(
-#         """
-#         <style>
-#             [data-testid="stSidebarNav"] {
-#                 background-image: url('data:image/png;base64,{img_b64}');
-#                 background-repeat: no-repeat;
-#                 padding-top: 50px;
-#                 background-position: 100px 50px;
-#             }
-#             [data-testid="stSidebarNav"]::before {
-#                 content: " ";
-#                 margin-left: 20px;
-#                 margin-top: 20px;
-#                 font-size: 30px;
-#                 position: relative;
-#                 top: 100px;
-#             }
-#         </style>
-#         """,
-#         unsafe_allow_html=True,
-#     )
+###############################
 
-# add_logo()
+
+
+st.set_page_config(
+    page_title="Welcome",
+    page_icon=" ",layout = 'centered'
+)
+
 
 st.write("# Congratulations, you found me!")
 
