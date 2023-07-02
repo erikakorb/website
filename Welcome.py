@@ -1,37 +1,40 @@
 import streamlit as st
-from PIL import Image
 
 st.set_page_config(
     page_title="Welcome",
     page_icon=" ",layout = 'centered'
 )
 
-def add_logo(logo_path, width, height):
-    """Read and return a resized logo"""
-    logo = Image.open(logo_path)
-    modified_logo = logo.resize((width, height))
-    return modified_logo
+#from PIL import Image
 
-my_logo = add_logo(logo_path="Korb_Erika_pic.jpg", width=50, height=60)
-st.sidebar.image(my_logo)
+# def add_logo(logo_path, width, height):
+#     """Read and return a resized logo"""
+#     logo = Image.open(logo_path)
+#     modified_logo = logo.resize((width, height))
+#     return modified_logo
+
+# my_logo = add_logo(logo_path="Korb_Erika_pic.jpg", width=50, height=60)
+# st.sidebar.image(my_logo)
 
 # # # OR
 
 # # st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
 
-# import base64
+import base64
 
-# with open("Korb_Erika_pic.jpg", "rb") as f:
-#     data = base64.b64encode(f.read()).decode("utf-8")
+with open("Korb_Erika_pic.jpg", "rb") as f:
+    data = base64.b64encode(f.read()).decode("utf-8")
 
-#     st.sidebar.markdown(
-#         f"""
-#         <div style="display:table;margin-top:-20%;margin-left:20%;">
-#             <img src="data:image/png;base64,{data}" width="100" height="150">
-#         </div>
-#         """,
-#         unsafe_allow_html=True,
-#     )
+    st.sidebar.markdown(
+        f"""
+        <div style="display:table;margin-top:-20%;margin-left:20%;">
+            <img src="data:image/png;base64,{data}" width="150" height="150">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.sidebar.markdown("Here is some text")
 
 st.write("# Congratulations, you found me!")
 
