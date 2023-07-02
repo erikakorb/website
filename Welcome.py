@@ -20,44 +20,52 @@ resized_img = img.resize((80, 80))  # x, y
 resized_img.save(buffer, format="PNG")
 img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
-# st.markdown(
-#         f"""
-#         <style>
-#             [data-testid="stSidebarNav"] {{
-#                 background-image: url('data:image/png;base64,{img_b64}');
-#                 background-repeat: no-repeat;
-#                 padding-top: 40px;
-#                 background-position: 120px 40px;
-#             }}
-#         </style>
-#         """,
-#         unsafe_allow_html=True,
-#     )
-
-def add_logo():
-    st.markdown(
-        """
+st.markdown(
+        f"""
         <style>
-            [data-testid="stSidebarNav"] {
+            [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 50px;
-                background-position: 100px 50px;
-            }
-            [data-testid="stSidebarNav"]::before {
+                padding-top: 40px;
+                background-position: 120px 40px;
+            }}
+            [data-testid="stSidebarNav"]::before {{
                 content: " ";
                 margin-left: 20px;
                 margin-top: 20px;
                 font-size: 30px;
                 position: relative;
                 top: 100px;
-            }
+            }}
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-add_logo()
+# def add_logo():
+#     st.markdown(
+#         """
+#         <style>
+#             [data-testid="stSidebarNav"] {
+#                 background-image: url('data:image/png;base64,{img_b64}');
+#                 background-repeat: no-repeat;
+#                 padding-top: 50px;
+#                 background-position: 100px 50px;
+#             }
+#             [data-testid="stSidebarNav"]::before {
+#                 content: " ";
+#                 margin-left: 20px;
+#                 margin-top: 20px;
+#                 font-size: 30px;
+#                 position: relative;
+#                 top: 100px;
+#             }
+#         </style>
+#         """,
+#         unsafe_allow_html=True,
+#     )
+
+# add_logo()
 
 st.write("# Congratulations, you found me!")
 
