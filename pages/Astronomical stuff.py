@@ -1,5 +1,11 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Astronomical stuff",
+    page_icon=" ",layout = 'centered'
+)
+
+
 ################################ profile pic
 import io
 from PIL import Image
@@ -39,11 +45,6 @@ st.markdown(
     )
 
 ###############################
-
-st.set_page_config(
-    page_title="Astronomical stuff",
-    page_icon=" ",layout = 'centered'
-)
 
 
 
