@@ -20,10 +20,10 @@ st.set_page_config(
 
 # # st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
 
-import base64
+# import base64
 
-with open("Korb_Erika_pic.jpg", "rb") as f:
-    data = base64.b64encode(f.read()).decode("utf-8")
+# with open("Korb_Erika_pic.jpg", "rb") as f:
+#     data = base64.b64encode(f.read()).decode("utf-8")
 
 #     st.sidebar.markdown(
 #         f"""
@@ -57,29 +57,58 @@ with open("Korb_Erika_pic.jpg", "rb") as f:
 #         unsafe_allow_html=True,
 #     )
 
-def add_logo():
-    st.markdown(
-        """
+# def add_logo():
+#     st.markdown(
+#         """
+#         <style>
+#             [data-testid="stSidebarNav"] {
+#                 background-image: data;
+#                 background-repeat: no-repeat;
+#                 padding-top: 120px;
+#                 background-position: 20px 20px;
+#             }
+#             [data-testid="stSidebarNav"]::before {
+#                 content: "My Company Name";
+#                 margin-left: 20px;
+#                 margin-top: 20px;
+#                 font-size: 30px;
+#                 position: relative;
+#                 top: 100px;
+#             }
+#         </style>
+#         """,
+#         unsafe_allow_html=True,
+#     )
+# add_logo()
+
+import io
+from PIL import Image
+import base64
+
+file = open("Korb_Erika_pic.jpg", "rb")
+contents = file.read()
+img_str = base64.b64encode(contents).decode("utf-8")
+buffer = io.BytesIO()
+file.close()
+img_data = base64.b64decode(img_str)
+img = Image.open(io.BytesIO(img_data))
+resized_img = img.resize((150, 60))  # x, y
+resized_img.save(buffer, format="PNG")
+img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+st.markdown(
+        f"""
         <style>
-            [data-testid="stSidebarNav"] {
-                background-image: data;
+            [data-testid="stSidebarNav"] {{
+                background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 20px 20px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
+                padding-top: 50px;
+                background-position: 100px 50px;
+            }}
         </style>
         """,
         unsafe_allow_html=True,
     )
-add_logo()
 
 st.write("# Congratulations, you found me!")
 
