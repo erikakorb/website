@@ -47,6 +47,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Use st.sidebar to create the sidebar
+with st.sidebar:
+    # Center-aligned headers
+    st.markdown("<h1 style='text-align: center;'>Sidebar Header 1</h1>", unsafe_allow_html=True)
+
 st.write("# Congratulations, you found me!")
 
 st.write(
