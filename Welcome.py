@@ -41,11 +41,11 @@ def add_logo():
             [data-testid="stSidebarNav"] {
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 20px 20px;
+                padding-top: 50px;
+                background-position: 100px 50px;
             }
             [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
+                content: " ";
                 margin-left: 20px;
                 margin-top: 20px;
                 font-size: 30px;
