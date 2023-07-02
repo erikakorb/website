@@ -5,7 +5,6 @@ st.set_page_config(
     page_icon=" ",layout = 'centered'
 )
 
-
 import io
 from PIL import Image
 import base64
@@ -30,6 +29,13 @@ st.markdown(
                 padding-top: 40px;
                 background-position: 120px 40px;
             }}
+        .sidebar .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+    </style>
+    """,
         </style>
         """,
         unsafe_allow_html=True,
