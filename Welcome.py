@@ -20,10 +20,10 @@ st.set_page_config(
 
 # # st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
 
-#import base64
+import base64
 
-# with open("Korb_Erika_pic.jpg", "rb") as f:
-#     data = base64.b64encode(f.read()).decode("utf-8")
+with open("Korb_Erika_pic.jpg", "rb") as f:
+    data = base64.b64encode(f.read()).decode("utf-8")
 
 #     st.sidebar.markdown(
 #         f"""
@@ -62,7 +62,7 @@ def add_logo():
         """
         <style>
             [data-testid="stSidebarNav"] {
-                background-image: url(http://placekitten.com/200/200);
+                background-image: data;
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 20px 20px;
