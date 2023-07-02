@@ -9,6 +9,44 @@ import pandas as pd
 from datetime import datetime
 from urllib.error import URLError
 
+# streamlit configuration page and headers
+st.set_page_config(page_title="Venice and its tides", page_icon=" ",layout = 'wide')
+align = """
+    <style>
+        div[data-testid="column"]:nth-of-type(1)
+        {
+            text-align: left;
+        } 
+
+        div[data-testid="column"]:nth-of-type(2)
+        {
+            text-align: left;
+        }
+        div[data-testid="column"]:nth-of-type(3)
+        {
+            text-align: left;
+        }
+        div[data-testid="column"]:nth-of-type(4)
+        {
+            text-align: left;
+        }
+        div[data-testid="column"]:nth-of-type(5)
+        {
+            text-align: left;
+        }
+        div[data-testid="column"]:nth-of-type(6)
+        {
+            text-align: left;
+        }
+        [data-testid="stMetricValue"] {
+            font-size: 20px;
+            text-align: left;
+        }
+    </style>
+    """
+st.markdown(align, unsafe_allow_html=True)
+
+
 ################################ profile pic
 import io
 from PIL import Image
@@ -50,42 +88,6 @@ st.markdown(
 ###############################
 
 
-# streamlit configuration page and headers
-st.set_page_config(page_title="Venice and its tides", page_icon=" ",layout = 'wide')
-align = """
-    <style>
-        div[data-testid="column"]:nth-of-type(1)
-        {
-            text-align: left;
-        } 
-
-        div[data-testid="column"]:nth-of-type(2)
-        {
-            text-align: left;
-        }
-        div[data-testid="column"]:nth-of-type(3)
-        {
-            text-align: left;
-        }
-        div[data-testid="column"]:nth-of-type(4)
-        {
-            text-align: left;
-        }
-        div[data-testid="column"]:nth-of-type(5)
-        {
-            text-align: left;
-        }
-        div[data-testid="column"]:nth-of-type(6)
-        {
-            text-align: left;
-        }
-        [data-testid="stMetricValue"] {
-            font-size: 20px;
-            text-align: left;
-        }
-    </style>
-    """
-st.markdown(align, unsafe_allow_html=True)
 
 st.write('# Venice and its tides')
 st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
