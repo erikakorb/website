@@ -20,37 +20,44 @@ resized_img = img.resize((80, 80))  # x, y
 resized_img.save(buffer, format="PNG")
 img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
-st.markdown(
-        f"""
+# st.markdown(
+#         f"""
+#         <style>
+#             [data-testid="stSidebarNav"] {{
+#                 background-image: url('data:image/png;base64,{img_b64}');
+#                 background-repeat: no-repeat;
+#                 padding-top: 40px;
+#                 background-position: 120px 40px;
+#             }}
+#         </style>
+#         """,
+#         unsafe_allow_html=True,
+#     )
+
+def add_logo():
+    st.markdown(
+        """
         <style>
-            [data-testid="stSidebarNav"] {{
+            [data-testid="stSidebarNav"] {
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 40px;
-                background-position: 120px 40px;
-            }}
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "My Company Name";
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-st.markdown(
-    """
-    <style>
-    .sidebar .sidebar-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Use st.sidebar to create the sidebar
-with st.sidebar:
-    # Center-aligned headers
-    st.markdown("<h1 style='text-align: center;'>Sidebar Header 1</h1>", unsafe_allow_html=True)
+add_logo()
 
 st.write("# Congratulations, you found me!")
 
