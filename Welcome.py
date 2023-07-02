@@ -26,8 +26,8 @@ st.markdown(
             [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 50px;
-                background-position: 50px 50px;
+                padding-top: 40px;
+                background-position: 80px 50px;
             }}
             [data-testid="stSidebarNav"]::before {{
                 content: " ";
@@ -35,7 +35,7 @@ st.markdown(
                 margin-top: 20px;
                 font-size: 50px;
                 position: relative;
-                top: 150px;
+                top: 100px;
             }}
         </style>
         """,
