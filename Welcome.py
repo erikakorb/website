@@ -36,6 +36,8 @@ with open("Korb_Erika_pic.jpg", "rb") as f:
 
     st.sidebar.markdown("Here is some text")
 
+st.sidebar.image("Korb_Erika_pic.jpg", width=70)
+
 st.write("# Congratulations, you found me!")
 
 st.write(
