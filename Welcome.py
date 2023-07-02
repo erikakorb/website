@@ -5,81 +5,6 @@ st.set_page_config(
     page_icon=" ",layout = 'centered'
 )
 
-#from PIL import Image
-
-# def add_logo(logo_path, width, height):
-#     """Read and return a resized logo"""
-#     logo = Image.open(logo_path)
-#     modified_logo = logo.resize((width, height))
-#     return modified_logo
-
-# my_logo = add_logo(logo_path="Korb_Erika_pic.jpg", width=50, height=60)
-# st.sidebar.image(my_logo)
-
-# # # OR
-
-# # st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
-
-# import base64
-
-# with open("Korb_Erika_pic.jpg", "rb") as f:
-#     data = base64.b64encode(f.read()).decode("utf-8")
-
-#     st.sidebar.markdown(
-#         f"""
-#         <div style="display:table;margin-top:-20%;margin-left:50%;">
-#             <img src="data:image/png;base64,{data}" width="150" height="150">
-#         </div>
-#         """,
-#         unsafe_allow_html=True,
-#     )
-
-# def add_logo():
-#     st.markdown(
-#         """
-#         <style>
-#             [data-testid="stSidebarNav"] {
-#                 background-image: url(https://github.com/erikakorb/website/blob/main/Korb_Erika_pic.jpg);
-#                 background-repeat: no-repeat;
-#                 padding-top: 120px;
-#                 background-position: 20px 20px;
-#             }
-#             [data-testid="stSidebarNav"]::before {
-#                 content: "My Company Name";
-#                 margin-left: 20px;
-#                 margin-top: 20px;
-#                 font-size: 30px;
-#                 position: relative;
-#                 top: 100px;
-#             }
-#         </style>
-#         """,
-#         unsafe_allow_html=True,
-#     )
-
-# def add_logo():
-#     st.markdown(
-#         """
-#         <style>
-#             [data-testid="stSidebarNav"] {
-#                 background-image: data;
-#                 background-repeat: no-repeat;
-#                 padding-top: 120px;
-#                 background-position: 20px 20px;
-#             }
-#             [data-testid="stSidebarNav"]::before {
-#                 content: "My Company Name";
-#                 margin-left: 20px;
-#                 margin-top: 20px;
-#                 font-size: 30px;
-#                 position: relative;
-#                 top: 100px;
-#             }
-#         </style>
-#         """,
-#         unsafe_allow_html=True,
-#     )
-# add_logo()
 
 import io
 from PIL import Image
@@ -92,7 +17,7 @@ buffer = io.BytesIO()
 file.close()
 img_data = base64.b64decode(img_str)
 img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((150, 60))  # x, y
+resized_img = img.resize((150, 150))  # x, y
 resized_img.save(buffer, format="PNG")
 img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
