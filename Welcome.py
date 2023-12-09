@@ -52,7 +52,7 @@ st.markdown(
 
 st.write(
     """
-    #### Hi! I'm **Erika Korb**, a PhD student in Astrophysics at the University of Padua. """)
+    ##### Hi! I'm **Erika Korb**, a PhD student in Astrophysics at the University of Padua. """)
     
 st.write( """  ###### At work, I play with stars and binaries by means of numerical simulations in the [DemoBlack](https://demoblack.com/) group. When I am not in front of a computer, I am likely biking somewhere and taking pictures of the wonders I bump into. Ah, and I enjoy wandering around my hometown: Venice. """)
     
