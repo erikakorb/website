@@ -318,6 +318,7 @@ with colW3:
 # map
 
 df_coord = GetCoord(NomiStazioni,StationNames) 
+df_coord['label'] = StationNames
 
 point_layer = pydeck.Layer(
     "ScatterplotLayer",
@@ -337,7 +338,7 @@ view_state = pydeck.ViewState(
 chart = pydeck.Deck(
     point_layer,
     initial_view_state=view_state,
-    tooltip={"text": f"{stazione}\nWater level: {valore}"},
+    tooltip={"text": f"{label}\nWater level: {valore}"},
 )
 
 event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object")
