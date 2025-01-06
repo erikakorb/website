@@ -111,6 +111,9 @@ def GetCoord(NomiStazioni,StationNames):
     url_json = 'https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json'
     df = pd.read_json(url_json)
     df = df.loc[df.stazione.isin(NomiStazioni)]
+    df = df.set_index('stazione')
+    print(df)
+    print(df.reindex(StationNames))
     df.stazione = StationNames
     df = df.set_index('stazione')
     return df
@@ -329,12 +332,12 @@ point_layer = pydeck.Layer(
     pickable=True,
     auto_highlight=True,
     get_radius=300,
-    height=1000,
+    height=2000,
     width=500
 )
 
 view_state = pydeck.ViewState(
-    latitude=45.37, longitude=12.25, controller=True, zoom=8, pitch=0
+    latitude=45.37, longitude=12.25, controller=True, zoom=9.5, pitch=0
 )
 
 chart = pydeck.Deck(
