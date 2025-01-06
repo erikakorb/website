@@ -109,10 +109,10 @@ def GetJson(url_json,NomiStazioni,StationNames):
 def GetCoord(NomiStazioni,StationNames):
     url_json = 'https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json'
     df = pd.read_json(url_json)
-    df_coord = df.loc[df.stazione.isin(NomiStazioni)][['latDDN','lonDDE']]
-    df_coord.stazione = StationNames
-    print(df_coord)
-    df_coord = df_coord.set_index('stazione')
+    df = df.loc[df.stazione.isin(NomiStazioni)]
+    df.stazione = StationNames
+    df = df.set_index('stazione')
+    df_coord = df[['latDDN','lonDDE']]
     return df_coord
 
 
