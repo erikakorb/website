@@ -318,29 +318,35 @@ with colW3:
 
 # map
 
-df_coord = GetCoord(NomiStazioni,StationNames) 
+colM1,  colM2 = st.columns([1,1])
 
-point_layer = pydeck.Layer(
-    "ScatterplotLayer",
-    data=df_coord,
-    id="stazione",
-    get_position=["lonDDE", "latDDN"],
-    get_color="[255, 75, 75]",
-    pickable=True,
-    auto_highlight=True,
-    get_radius=300,
-    height=2000,
-    width=500
-)
+with colM1:
+    st.write(' bla')
 
-view_state = pydeck.ViewState(
-    latitude=45.37, longitude=12.25, controller=True, zoom=9.5, pitch=0,  height=1000,  width=500
-)
-
-chart = pydeck.Deck(
-    point_layer,
-    initial_view_state=view_state,
-    tooltip={"text": "{label}\nWater level: {valore}"},
-)
-
-st.pydeck_chart(chart) #, on_select="rerun")#, selection_mode="multi-object")
+with colM2:
+    df_coord = GetCoord(NomiStazioni,StationNames) 
+    
+    point_layer = pydeck.Layer(
+        "ScatterplotLayer",
+        data=df_coord,
+        id="stazione",
+        get_position=["lonDDE", "latDDN"],
+        get_color="[255, 75, 75]",
+        pickable=True,
+        auto_highlight=True,
+        get_radius=300,
+        height=2000,
+        width=500
+    )
+    
+    view_state = pydeck.ViewState(
+        latitude=45.33, longitude=12.25, controller=True, zoom=9.8, pitch=0,  height=2000,  width=500
+    )
+    
+    chart = pydeck.Deck(
+        point_layer,
+        initial_view_state=view_state,
+        tooltip={"text": "{label}\nWater level: {valore}"},
+    )
+    
+    st.pydeck_chart(chart) #, on_select="rerun")#, selection_mode="multi-object")
