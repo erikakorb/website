@@ -269,7 +269,7 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
-col1, colempty, col2, col3,col4,col5 = st.columns([4,0.5,1,1,1,1])
+col1, colempty, col2, col3,col4 = st.columns([4,0.5,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
 with col2:
@@ -281,14 +281,11 @@ with col2:
     st.write('#### Chioggia')
     st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-100) + ' cm', delta_color='inverse')
 with col3:
-    st.write('#### Chioggia')
-    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-100) + ' cm', delta_color='inverse')
-with col4:
     st.write('#### San Nicolò')
     st.metric(label="Water level", value=str(last_water.T['San Nicolò'][0]) + ' cm',delta=str(last_water.T['San Nicolò'][0]-100) + ' cm', delta_color='inverse')
     st.metric(label="Wind velocity", value=str(last_wind['San Nicolò'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['San Nicolò']))
-with col5:
+with col4:
     st.write('#### Pellestrina')
     st.metric(label="Water level", value=str(last_water.T['Pellestrina'][0]) + ' cm',delta=str(last_water.T['Pellestrina'][0]-100) + ' cm', delta_color='inverse')
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
