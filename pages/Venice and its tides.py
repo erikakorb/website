@@ -251,7 +251,7 @@ data = pd.concat(dflist)
 
 first_data = data.groupby('Station').head(1).set_index('Station')
 first_time = first_data['Date'][0]
-text_time_water = data.groupby('Station').head(75).set_index('Station').tail(1)['Date'][0]  # 46
+text_time_water = data.groupby('Station').head(230).set_index('Station').tail(1)['Date'][0]  # 46
 text_time_scirocco = data.groupby('Station').head(28).set_index('Station').tail(1)['Date'][0]
 text_time_bora = data.groupby('Station').head(20).set_index('Station').tail(1)['Date'][0]
 
@@ -277,6 +277,9 @@ with col2:
     #st.dataframe(styler_water,width=500, height=40)
     #st.dataframe(last_wind,width=340, height=108)
     st.metric(label="Water level", value=str(last_water.T['Venice'][0]) + ' cm', delta=str(last_water.T['Venice'][0]-100) + ' cm', delta_color='inverse')
+
+    st.write('#### Chioggia')
+    st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-100) + ' cm', delta_color='inverse')
 with col3:
     st.write('#### Chioggia')
     st.metric(label="Water level", value=str(last_water.T['Chioggia'][0]) + ' cm',delta=str(last_water.T['Chioggia'][0]-100) + ' cm', delta_color='inverse')
