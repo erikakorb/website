@@ -43,6 +43,10 @@ align = """
     """
 st.markdown(align, unsafe_allow_html=True)
 
+################################ profile pic
+import io
+from PIL import Image
+import base64
 
 file = open("Korb_Erika_pic.jpg", "rb")
 contents = file.read()
