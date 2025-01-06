@@ -281,9 +281,9 @@ with colM1:
     
     st.write(""" As a rule of thumb, water levels in the habours occur also in the cities with about **one hour delay**. Strong cold winds of **Bora** (from NE/E, about 30°- 90°) or humid winds of **Scirocco** (from SE, about 100°-150°) accumulate water to different harbours and sides of the lagoon. Spot the differences in the trends and discover what happens when the barriers of the [MOSE](https://www.mosevenezia.eu/project/?lang=en) dam are operating! """)
     
-    st.write(""" A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract the real-time-data, and a small archive of the most recent poweful floodings. Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
+    st.write(""" A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract the real-time-data, and a small archive of the most recent powerful floodings. Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
     
-    st.write(""" What are you waiting for? Dive into the physics of the tides and discover whether San Marco square will be flooded along with the rest of the city""")
+    st.write(""" What are you waiting for? Dive into the physics of the tides and discover whether San Marco square will be flooded along with the rest of the city. """)
     st.write(""" Have fun! :) """)
 
 with colM2:
