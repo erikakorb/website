@@ -328,11 +328,13 @@ point_layer = pydeck.Layer(
     get_color="[255, 75, 75]",
     pickable=True,
     auto_highlight=True,
-    get_radius=200,
+    get_radius=300,
+    height=1000
+    width=500
 )
 
 view_state = pydeck.ViewState(
-    latitude=45.37, longitude=12.25, controller=True, zoom=10, pitch=0
+    latitude=45.37, longitude=12.25, controller=True, zoom=8, pitch=0
 )
 
 chart = pydeck.Deck(
