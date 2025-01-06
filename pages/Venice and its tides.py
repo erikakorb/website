@@ -164,7 +164,8 @@ def PlotMultiLine(waterwind):
                         legend=alt.Legend(
         orient='none',
         legendX=10, legendY=-10,
-        direction='horizontal',
+        #direction='horizontal',
+        direction = 'vertical',
         titleAnchor='middle',
         title=' ') )
         )
