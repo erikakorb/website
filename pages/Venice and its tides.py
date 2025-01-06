@@ -11,7 +11,7 @@ from datetime import datetime
 from urllib.error import URLError
 
 # streamlit configuration page and headers
-st.set_page_config(page_title="Venice and its tides", page_icon=" ",layout = 'wide')
+st.set_page_config(page_title="Venice high tide: a real time dashboard", page_icon=" ",layout = 'wide')
 align = """
     <style>
         div[data-testid="column"]:nth-of-type(1)
