@@ -162,8 +162,8 @@ def PlotMultiLine(waterwind):
         size=alt.condition(~highlight, alt.value(1), alt.value(3)),
         color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors, nice={'interval': 'hour', 'step': 2}) ,
                         legend=alt.Legend(
-        orient='none',
-        legendX=5, legendY=-5,
+        orient='upper left',
+        #legendX=5, legendY=-0.1,
         direction = 'vertical',
         titleAnchor='middle',
         title=' ') )
