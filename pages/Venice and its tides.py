@@ -87,10 +87,6 @@ st.markdown(
 
 
 st.write('# Venice and its tides')
-st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
-st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
-st.write(""" ###### Have fun! :) """)
-st.write(' ')
 #st_autorefresh(interval=5 * 60 * 1000)   # autorefresh the  page every 5 mins
 
 
@@ -277,7 +273,44 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 #### plot ####
 
-# first row
+# map
+
+colM1,  colM2 = st.columns([1,1])
+with colM1:
+    st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
+    st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
+    st.write(""" ###### Have fun! :) """)
+    st.write(' ')
+
+with colM2:
+    df_coord = GetCoord(NomiStazioni,StationNames) 
+    
+    point_layer = pydeck.Layer(
+        "ScatterplotLayer",
+        data=df_coord,
+        id="stazione",
+        get_position=["lonDDE", "latDDN"],
+        get_color="[255, 75, 75]",
+        pickable=True,
+        auto_highlight=True,
+        get_radius=300,
+        height=2000,
+        width=500
+    )
+    view_state = pydeck.ViewState(
+        latitude=45.33, longitude=12.25, controller=True, zoom=9.8, pitch=0,  height=2000,  width=500
+    )
+    chart = pydeck.Deck(
+        point_layer,
+        initial_view_state=view_state,
+        tooltip={"text": "{label}\nWater level: {valore}"},
+    )
+    st.pydeck_chart(chart) #, on_select="rerun")#, selection_mode="multi-object")
+
+
+
+
+# water level row
 
 col1, colempty, col2, col3,col4 = st.columns([4,0.5,1,1,1])
 with col1:
@@ -301,7 +334,8 @@ with col4:
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
-# second row
+
+# wind row
 
 colW1,  colW2, colW3 = st.columns([1,1,1])
 with colW1:
@@ -315,38 +349,3 @@ with colW3:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
     st.plotly_chart(PolarPlot('Pellestrina'), theme=None, use_container_width=True)
 
-
-# map
-
-colM1,  colM2 = st.columns([1,1])
-
-with colM1:
-    st.write(' bla')
-
-with colM2:
-    df_coord = GetCoord(NomiStazioni,StationNames) 
-    
-    point_layer = pydeck.Layer(
-        "ScatterplotLayer",
-        data=df_coord,
-        id="stazione",
-        get_position=["lonDDE", "latDDN"],
-        get_color="[255, 75, 75]",
-        pickable=True,
-        auto_highlight=True,
-        get_radius=300,
-        height=2000,
-        width=500
-    )
-    
-    view_state = pydeck.ViewState(
-        latitude=45.33, longitude=12.25, controller=True, zoom=9.8, pitch=0,  height=2000,  width=500
-    )
-    
-    chart = pydeck.Deck(
-        point_layer,
-        initial_view_state=view_state,
-        tooltip={"text": "{label}\nWater level: {valore}"},
-    )
-    
-    st.pydeck_chart(chart) #, on_select="rerun")#, selection_mode="multi-object")
