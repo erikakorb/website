@@ -36,7 +36,7 @@ st.markdown(
                 margin-top: 20px;
                 font-size: 50px;
                 position: relative;
-                top: 250px;
+                top: 500px;
             }}
         </style>
         """,
