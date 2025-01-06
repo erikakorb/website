@@ -11,7 +11,7 @@ from datetime import datetime
 from urllib.error import URLError
 
 # streamlit configuration page and headers
-st.set_page_config(page_title="Venice high tide: a real time dashboard", page_icon=" ",layout = 'wide')
+st.set_page_config(page_title=" ", page_icon=" ",layout = 'wide')
 align = """
     <style>
         div[data-testid="column"]:nth-of-type(1)
@@ -44,11 +44,6 @@ align = """
 st.markdown(align, unsafe_allow_html=True)
 
 
-################################ profile pic
-import io
-from PIL import Image
-import base64
-
 file = open("Korb_Erika_pic.jpg", "rb")
 contents = file.read()
 img_str = base64.b64encode(contents).decode("utf-8")
@@ -56,7 +51,7 @@ buffer = io.BytesIO()
 file.close()
 img_data = base64.b64decode(img_str)
 img = Image.open(io.BytesIO(img_data))
-resized_img = img.resize((150, 150))  # x, y
+resized_img = img.resize((140, 140))  # x, y
 resized_img.save(buffer, format="PNG")
 img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
@@ -66,7 +61,7 @@ st.markdown(
             [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 50px;
+                padding-top: 200px;
                 background-position: 90px 50px;
             }}
             [data-testid="stSidebarNav"]::before {{
@@ -75,18 +70,17 @@ st.markdown(
                 margin-top: 20px;
                 font-size: 50px;
                 position: relative;
-                top: 200px;
+                top: 500px;
             }}
         </style>
         """,
         unsafe_allow_html=True,
     )
-
 ###############################
 
 
 
-st.write('# Venice and its tides')
+st.write('# Venice high tide: a real time dashboard')
 #st_autorefresh(interval=5 * 60 * 1000)   # autorefresh the  page every 5 mins
 
 
@@ -277,8 +271,22 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 colM1,  colM2 = st.columns([1,1])
 with colM1:
-    st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
-    st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
+    st.write(""" ###### [High tide ("acqua alta")](https://www.comune.venezia.it/en/content/venice-and-high-water#:~:text=Condividi%20su%20Whatsapp-,Venice%20and%20high%20water,a%20feature%20of%20Venetian%20life.) 
+    is the typical seasonal flooding of Venice. Astronomical tides, low atmospheric pressure and strong winds combined together
+    can accumulate water into the Venetian lagoon, rising the water level in all its islands and cities. """)
+    
+    st.write(""" ###### In this dashboard, I collect real-time-data from from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento) placed in the
+    three lagoon harbours ("San Nicolò" at north, "Alberoni" at the center, "Pellestrina" at south) and in the two biggest cities ("Venice" and "Chioggia"). Monitoring the wind strength and direction, as
+    well as the water level, at harbours allows to predict the oncoming tides in the cities.""")
+    
+    st.write(""" As a rule of thumb, water levels in the habours occur also in the cities with about one hour delay. Strong cold winds of Bora (from NE/E, about 30°- 90°) or humid winds of Scirocco (from SE, about 100°-150°) 
+    accumulate water to different harbours and sides of the lagoon. Spot the differences in the trends and discover what happens when the barriers of the [MOSE](https://www.mosevenezia.eu/project/?lang=en) dam are operating. """)
+    
+    st.write(""" A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), 
+    among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). 
+    Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
+    
+    st.write(""" ###### What are you waiting for? Dive into the physics of the tides and discover whether San Marco square will be flooded along with the rest of the city""")
     st.write(""" ###### Have fun! :) """)
 
 with colM2:
