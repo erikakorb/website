@@ -163,7 +163,7 @@ def PlotMultiLine(waterwind):
         color=alt.Color('Station:N', scale=alt.Scale(domain=StationNames, range=colors, nice={'interval': 'hour', 'step': 2}) ,
                         legend=alt.Legend(
         orient='none',
-        legendX=-5, legendY=-30,
+        legendX=-5, legendY=-27,
         direction = 'vertical',
         titleAnchor='middle',
         title=' ') )
@@ -251,7 +251,7 @@ data = pd.concat(dflist)
 
 first_data = data.groupby('Station').head(1).set_index('Station')
 first_time = first_data['Date'][0]
-text_time_water = data.groupby('Station').head(66).set_index('Station').tail(1)['Date'][0]  # 46
+text_time_water = data.groupby('Station').head(75).set_index('Station').tail(1)['Date'][0]  # 46
 text_time_scirocco = data.groupby('Station').head(28).set_index('Station').tail(1)['Date'][0]
 text_time_bora = data.groupby('Station').head(20).set_index('Station').tail(1)['Date'][0]
 
