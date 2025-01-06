@@ -89,12 +89,13 @@ st.write('# Venice and its tides')
 st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
 st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
 st.write(""" ###### Have fun! :) """)
+st.write(' ')
 #st_autorefresh(interval=5 * 60 * 1000)   # autorefresh the  page every 5 mins
 
 
 
 ##### functions ############
-
+'''
 def GetJson(url_json,NomiStazioni,StationNames):
     df_json = pd.read_json(url_json)
     df_json = df_json[['stazione','valore']]
@@ -103,6 +104,15 @@ def GetJson(url_json,NomiStazioni,StationNames):
     df_json = df_json.set_index('stazione')
     df_json = df_json.rename({df_json.columns[0]:'Water Level'}, axis=1) 
     return df_json
+'''
+
+def GetCoord(NomiStazioni,StationNames):
+    url_json = 'https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json'
+    df = pd.read_json(url_json)
+    df_coord = df.loc[df.stazione.isin(NomiStazioni)][['latDDN','lonDDE']]
+    df_coord.stazione = StationNames
+    df_coord = df_coord.set_index('stazione')
+    return df_coord
 
 
 def GetData(StationNames,urls):
@@ -232,15 +242,14 @@ def WindConvert(df,colname):
 #### extract data ####
 StationNames=['Venice','San Nicolò','Alberoni','Pellestrina','Chioggia']
 NomiStazioni = ['Punta Salute Canal Grande','Diga sud Lido','Diga nord Malamocco','Diga sud Chioggia','Chioggia Vigo']
-urls_json = ['https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json',
-             'https://dati.venezia.it/sites/default/files/dataset/opendata/vento.json']
+#urls_json = ['https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json',
+#             'https://dati.venezia.it/sites/default/files/dataset/opendata/vento.json']
 
 urls=['https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Punta_Salute.html',
       'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Lido.html',
       'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Nord_Malamocco.html',
       'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Diga_Sud_Chioggia.html',
       'https://www.comune.venezia.it/sites/default/files/publicCPSM2/stazioni/temporeale/Chioggia_Citta.html']
-
 
 dflist = GetData(StationNames,urls)
 data = pd.concat(dflist)
@@ -265,6 +274,9 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 
 #### plot ####
+
+# first row
+
 col1, colempty, col2, col3,col4 = st.columns([4,0.5,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
@@ -287,6 +299,7 @@ with col4:
     st.metric(label="Wind velocity", value=str(last_wind['Pellestrina'][0]) + ' km/h')
     st.metric(label="Wind direction", value=str(last_wind_direction['Pellestrina']))
 
+# second row
 
 colW1,  colW2, colW3 = st.columns([1,1,1])
 with colW1:
@@ -299,3 +312,7 @@ with colW2:
 with colW3:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
     st.plotly_chart(PolarPlot('Pellestrina'), theme=None, use_container_width=True)
+
+# map
+df_coord = GetCoord(NomiStazioni,StationNames) 
+st.map(df_coord,latitude='latDDN', longitude='lonDDE', color='red')
