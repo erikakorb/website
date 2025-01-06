@@ -329,7 +329,7 @@ point_layer = pydeck.Layer(
     pickable=True,
     auto_highlight=True,
     get_radius=300,
-    height=1000
+    height=1000,
     width=500
 )
 
