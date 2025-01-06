@@ -331,13 +331,13 @@ point_layer = pydeck.Layer(
 )
 
 view_state = pydeck.ViewState(
-    latitude=45.33, longitude=12.20, controller=True, zoom=2.4, pitch=30
+    latitude=45.33, longitude=12.20, controller=True, zoom=50, pitch=0
 )
 
 chart = pydeck.Deck(
     point_layer,
     initial_view_state=view_state,
-    tooltip={"text": "{stazione}\nWater level: {valore}"},
+    tooltip={"text": f"{stazione}\nWater level: {valore}"},
 )
 
 event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object")
