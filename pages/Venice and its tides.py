@@ -282,7 +282,7 @@ with colM1:
     #st.write(""" ###### Have fun! :) """)
     #st.write(' ')
 
-    st.altair_chart(PlotMultiLine('Water'), use_container_width=True, height=1000)
+    st.altair_chart(PlotMultiLine('Water'), use_container_width=False)
 
 with colM2:
     df_coord = GetCoord(NomiStazioni,StationNames) 
