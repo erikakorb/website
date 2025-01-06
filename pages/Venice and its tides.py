@@ -277,12 +277,9 @@ last_wind_direction = WindConvert(copylastwind,'WindDir')['Direction']
 
 colM1,  colM2 = st.columns([1,1])
 with colM1:
-    #st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
-    #st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
-    #st.write(""" ###### Have fun! :) """)
-    #st.write(' ')
-
-    st.altair_chart(PlotMultiLine('Water'), use_container_width=False)
+    st.write(""" ###### I built this dashboard to have **snapshot of the situation of tides and winds across the Venetian lagoon.** A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento). Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
+    st.write(""" ###### What are you waiting for? **Dive into the physics of the tides** and discover the correlations between the water level in the cities, the water level at harbour entrances, and the wind properties! Eventually, you will be able to **predict the rising of the water within the next hour!**""")
+    st.write(""" ###### Have fun! :) """)
 
 with colM2:
     df_coord = GetCoord(NomiStazioni,StationNames) 
@@ -314,6 +311,7 @@ with colM2:
 
 # water level row
 
+st.write(' ')
 col1, colempty, col2, col3,col4 = st.columns([4,0.5,1,1,1])
 with col1:
     st.altair_chart(PlotMultiLine('Water'), use_container_width=True)
@@ -339,6 +337,7 @@ with col4:
 
 # wind row
 
+st.write(' ')
 colW1,  colW2, colW3 = st.columns([1,1,1])
 with colW1:
     st.write(' ')
