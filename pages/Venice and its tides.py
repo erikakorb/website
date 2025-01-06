@@ -1,5 +1,6 @@
 import streamlit as st
 #from streamlit_autorefresh import st_autorefresh
+import pydeck
 import plotly.express as px
 import plotly.io as pio
 pio.templates.default = "plotly"
@@ -95,16 +96,16 @@ st.write(' ')
 
 
 ##### functions ############
-'''
-def GetJson(url_json,NomiStazioni,StationNames):
-    df_json = pd.read_json(url_json)
-    df_json = df_json[['stazione','valore']]
-    df_json = df_json.loc[df_json.stazione.isin(NomiStazioni)]
-    df_json.stazione = StationNames
-    df_json = df_json.set_index('stazione')
-    df_json = df_json.rename({df_json.columns[0]:'Water Level'}, axis=1) 
-    return df_json
-'''
+
+#def GetJson(url_json,NomiStazioni,StationNames):
+#    df_json = pd.read_json(url_json)
+#    df_json = df_json[['stazione','valore']]
+#    df_json = df_json.loc[df_json.stazione.isin(NomiStazioni)]
+#    df_json.stazione = StationNames
+#    df_json = df_json.set_index('stazione')
+#    df_json = df_json.rename({df_json.columns[0]:'Water Level'}, axis=1) 
+#    return df_json
+
 
 def GetCoord(NomiStazioni,StationNames):
     url_json = 'https://dati.venezia.it/sites/default/files/dataset/opendata/livello.json'
@@ -112,8 +113,7 @@ def GetCoord(NomiStazioni,StationNames):
     df = df.loc[df.stazione.isin(NomiStazioni)]
     df.stazione = StationNames
     df = df.set_index('stazione')
-    df_coord = df[['latDDN','lonDDE']]
-    return df_coord
+    return df
 
 
 def GetData(StationNames,urls):
@@ -314,6 +314,32 @@ with colW3:
     #st.altair_chart(PlotMultiLine('WindDir'), use_container_width=True)    
     st.plotly_chart(PolarPlot('Pellestrina'), theme=None, use_container_width=True)
 
+
 # map
+
 df_coord = GetCoord(NomiStazioni,StationNames) 
-st.map(df_coord,latitude='latDDN', longitude='lonDDE', info='stazione', color='#ff0000')
+
+point_layer = pydeck.Layer(
+    "ScatterplotLayer",
+    data=df_coord,
+    id="stazione",
+    get_position=["lonDDE", "latDDN"],
+    get_color="[255, 75, 75]",
+    pickable=True,
+    auto_highlight=True,
+    get_radius=50,
+)
+
+view_state = pydeck.ViewState(
+    latitude=45.33, longitude=12.20, controller=True, zoom=2.4, pitch=30
+)
+
+chart = pydeck.Deck(
+    point_layer,
+    initial_view_state=view_state,
+    tooltip={"text": "{stazione}\nWater level: {valore}"},
+)
+
+event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object")
+
+event.selection
