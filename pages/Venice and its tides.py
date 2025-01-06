@@ -332,7 +332,7 @@ point_layer = pydeck.Layer(
 )
 
 view_state = pydeck.ViewState(
-    latitude=45.33, longitude=12.20, controller=True, zoom=50, pitch=0
+    latitude=45.33, longitude=12.20, controller=True, zoom=20, pitch=0
 )
 
 chart = pydeck.Deck(
@@ -341,6 +341,7 @@ chart = pydeck.Deck(
     #tooltip={"text": f"{label}\nWater level: {valore}"},
 )
 
-event = st.pydeck_chart(chart, on_select="rerun")#, selection_mode="multi-object")
+#event = 
+st.pydeck_chart(chart) #, on_select="rerun")#, selection_mode="multi-object")
 
-event.selection
+#event.selection
