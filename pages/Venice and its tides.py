@@ -111,6 +111,7 @@ def GetCoord(NomiStazioni,StationNames):
     df = pd.read_json(url_json)
     df_coord = df.loc[df.stazione.isin(NomiStazioni)][['latDDN','lonDDE']]
     df_coord.stazione = StationNames
+    print(df_coord)
     df_coord = df_coord.set_index('stazione')
     return df_coord
 
