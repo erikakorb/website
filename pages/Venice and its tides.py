@@ -300,7 +300,7 @@ with colM2:
         get_radius=370,
     )
     view_state = pydeck.ViewState(
-        latitude=45.4, longitude=12.41, controller=True, zoom=9.5, pitch=0,  height=3000,  width=500
+        latitude=45.38, longitude=12.40, controller=True, zoom=9, pitch=0,  height=3000,  width=500
     )
     chart = pydeck.Deck(
         point_layer,
