@@ -33,7 +33,7 @@ st.markdown(
             [data-testid="stSidebarNav"]::before {{
                 content: " ";
                 margin-left: 20px;
-                margin-top: 20px;
+                margin-top: 100px;
                 font-size: 50px;
                 position: relative;
                 top: 500px;
