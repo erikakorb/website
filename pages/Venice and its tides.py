@@ -319,7 +319,6 @@ with colW3:
 # map
 
 df_coord = GetCoord(NomiStazioni,StationNames) 
-df_coord['label'] = StationNames
 
 point_layer = pydeck.Layer(
     "ScatterplotLayer",
@@ -335,7 +334,7 @@ point_layer = pydeck.Layer(
 )
 
 view_state = pydeck.ViewState(
-    latitude=45.37, longitude=12.25, controller=True, zoom=9.5, pitch=0
+    latitude=45.37, longitude=12.25, controller=True, zoom=9.5, pitch=0,  height=1000,  width=500
 )
 
 chart = pydeck.Deck(
