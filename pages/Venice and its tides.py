@@ -247,7 +247,7 @@ data = pd.concat(dflist)
 
 first_data = data.groupby('Station').head(1).set_index('Station')
 first_time = first_data['Date'][0]
-text_time_water = data.groupby('Station').head(230).set_index('Station').tail(1)['Date'][0]  # 46
+text_time_water = data.groupby('Station').head(170).set_index('Station').tail(1)['Date'][0]  # 46
 text_time_scirocco = data.groupby('Station').head(28).set_index('Station').tail(1)['Date'][0]
 text_time_bora = data.groupby('Station').head(20).set_index('Station').tail(1)['Date'][0]
 
