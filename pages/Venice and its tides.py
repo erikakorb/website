@@ -277,11 +277,11 @@ colM1,  colM2 = st.columns([1,1])
 with colM1:
     st.write(""" [High tide ("acqua alta")](https://www.comune.venezia.it/en/content/venice-and-high-water#:~:text=Condividi%20su%20Whatsapp-,Venice%20and%20high%20water,a%20feature%20of%20Venetian%20life.) is the typical seasonal flooding of Venice. Astronomical tides, low atmospheric pressure and strong winds combined together can accumulate water into the Venetian lagoon, rising the water level in all its islands and cities. """)
     
-    st.write(""" In this dashboard, I collect real-time-data from from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento) placed in the three lagoon harbours ("San Nicolò" at north, "Alberoni" at the center, "Pellestrina" at south) and in the two biggest cities ("Venice" and "Chioggia"). Monitoring the wind strength and direction, as well as the water level, at harbours allows to **predict the oncoming tides in the cities**.""")
+    st.write(""" In this dashboard, I collect real-time-data from from the [weather stations](https://www.comune.venezia.it/content/dati-dalle-stazioni-rilevamento) placed in the three lagoon harbours ("San Nicolò" at north, "Alberoni" at the center, "Pellestrina" at south) and in the two biggest cities ("Venice" and "Chioggia"). Monitoring the wind strength and direction, as well as the water level, at the harbours allows to **predict the oncoming tides in the cities**.""")
     
-    st.write(""" As a rule of thumb, water levels in the habours occur also in the cities with about one hour delay. Strong cold winds of **Bora** (from NE/E, about 30°- 90°) or humid winds of **Scirocco** (from SE, about 100°-150°) accumulate water to different harbours and sides of the lagoon. Spot the differences in the trends and discover what happens when the barriers of the [MOSE](https://www.mosevenezia.eu/project/?lang=en) dam are operating. """)
+    st.write(""" As a rule of thumb, water levels in the habours occur also in the cities with about **one hour delay**. Strong cold winds of **Bora** (from NE/E, about 30°- 90°) or humid winds of **Scirocco** (from SE, about 100°-150°) accumulate water to different harbours and sides of the lagoon. Spot the differences in the trends and discover what happens when the barriers of the [MOSE](https://www.mosevenezia.eu/project/?lang=en) dam are operating! """)
     
-    st.write(""" A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract **real-time-data** and a small archive of the most recent poweful floodings. Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
+    st.write(""" A detailed description of what you are looking at is available [here](https://github.com/erikakorb/AcquaAlta), among with the python script adopted to extract the real-time-data, and a small archive of the most recent poweful floodings. Unfortunately, the documentation is still in italian. An english version will be available soon; in the mean time you may consider the wonders of Google translate.""")
     
     st.write(""" What are you waiting for? Dive into the physics of the tides and discover whether San Marco square will be flooded along with the rest of the city""")
     st.write(""" Have fun! :) """)
@@ -297,10 +297,10 @@ with colM2:
         get_color="[255, 75, 75]",
         pickable=True,
         auto_highlight=True,
-        get_radius=350,
+        get_radius=370,
     )
     view_state = pydeck.ViewState(
-        latitude=45.33, longitude=12.35, controller=True, zoom=9.8, pitch=0,  height=2500,  width=500
+        latitude=45.33, longitude=12.37, controller=True, zoom=9.8, pitch=0,  height=3000,  width=500
     )
     chart = pydeck.Deck(
         point_layer,
