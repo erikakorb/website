@@ -27,13 +27,13 @@ st.markdown(
             [data-testid="stSidebarNav"] {{
                 background-image: url('data:image/png;base64,{img_b64}');
                 background-repeat: no-repeat;
-                padding-top: 50px;
+                padding-top: 100px;
                 background-position: 90px 50px;
             }}
             [data-testid="stSidebarNav"]::before {{
                 content: " ";
                 margin-left: 20px;
-                margin-top: 100px;
+                margin-top: 20px;
                 font-size: 50px;
                 position: relative;
                 top: 500px;
