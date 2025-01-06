@@ -297,10 +297,10 @@ with colM2:
         get_color="[255, 75, 75]",
         pickable=True,
         auto_highlight=True,
-        get_radius=420,
+        get_radius=440,
     )
     view_state = pydeck.ViewState(
-        latitude=45.38, longitude=12.40, controller=True, zoom=9.1, pitch=0,  height=3000,  width=500
+        latitude=45.38, longitude=12.40, controller=True, zoom=9.2, pitch=0,  height=3000,  width=500
     )
     chart = pydeck.Deck(
         point_layer,
