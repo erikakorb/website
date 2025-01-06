@@ -34,10 +34,6 @@ align = """
         {
             text-align: left;
         }
-        div[data-testid="column"]:nth-of-type(6)
-        {
-            text-align: left;
-        }
         [data-testid="stMetricValue"] {
             font-size: 20px;
             text-align: left;
