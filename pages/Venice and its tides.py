@@ -316,4 +316,4 @@ with colW3:
 
 # map
 df_coord = GetCoord(NomiStazioni,StationNames) 
-st.map(df_coord,latitude='latDDN', longitude='lonDDE', color='red')
+st.map(df_coord,latitude='latDDN', longitude='lonDDE', color='#ff0000')
