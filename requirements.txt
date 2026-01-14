@@ -1,4 +1,5 @@
 streamlit==1.41.1  # original app ran with 1.14.0, then with 1.41.1
+rich == 10.14.0    # required by streamlit
 pandas==1.5.1      # original app ran with 1.5.1
 lxml==4.9.1
 plotly==5.13.0
