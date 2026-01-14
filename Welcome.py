@@ -52,9 +52,11 @@ st.markdown(
 
 st.write(
     """
-    ##### Hi! I'm **Erika Korb**, an Astrophysics aand Staff Research Scientist currently working at the Astronomical Observatory of the Valle d'Aosta ([OAVdA](https://www.oavda.it/)), in Italy, that is part of the Clément-Fillietroz Foundation ([FCF](https://www.oavda.it/chi-siamo)). """)
+    ##### Hi! I'm **Erika Korb**, an Astrophysics aand Staff Research Scientist""")
+
+st.write(""" ###### Currently, I work at the Astronomical Observatory of the Valle d'Aosta ([OAVdA](https://www.oavda.it/)), in Italy, that is part of the Clément-Fillietroz Foundation ([FCF](https://www.oavda.it/chi-siamo)). """)
     
-st.write( """  ###### My research covers a broad range of topics and expertise. Currently I develop Artificial Intelligence solutions in the context of Technological Transfer to support ecological transition and contribute to environmental monitoring. In addition to this, I continue the astrophysical research work started during my PhD, achieved at the Universityi of Padova in collaboration with the University of Heidelberg, where I spent 9 months collaborating with the  [DemoBlack](https://demoblack.com/) group. In my astrophysical research, I investigate stellar, binary evolution, and gravitational wave progenitors via population-synthesis simulations. In particular, I am part of the development and mainteinance team for the open-source [SEVN](https://sevncodes.gitlab.io/sevn/) population-synthesis code and I am a core member of the LISA Consortium.  
+st.write( """  ###### My research covers a broad range of topics and expertise. I develop Artificial Intelligence solutions in the context of Technological Transfer to support ecological transition and contribute to environmental monitoring. I also continue the astrophysical research work started during my PhD, that I obtained at the Universityi of Padova in collaboration with the University of Heidelberg, where I spent 9 months collaborating with the  [DemoBlack](https://demoblack.com/) group. In my astrophysical research, I investigate stellar, binary evolution, and gravitational wave progenitors via population-synthesis simulations. In particular, I am part of the development and mainteinance team for the open-source [SEVN](https://sevncodes.gitlab.io/sevn/) population-synthesis code and I am a core member of the LISA Consortium.  
           """)
     
 st.write(
