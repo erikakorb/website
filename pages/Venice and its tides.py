@@ -115,6 +115,8 @@ def GetData(StationNames,urls):
     dflist=[]
     for station, url in zip(StationNames,urls):
         html = requests.get(url).content
+        print(html)
+        print(pd.read_html(html))
         df=pd.read_html(html)[0]
         print(df)
 
