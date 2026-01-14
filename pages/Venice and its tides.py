@@ -116,6 +116,7 @@ def GetData(StationNames,urls):
     for station, url in zip(StationNames,urls):
         html = requests.get(url).content
         df=pd.read_html(html)[0]
+        print(df)
 
         df['Date'] = df['Data'].apply(lambda x: datetime.strptime(x,"%Y-%m-%d %H:%M:%S")) # datetime conversion
         df['Date'] = df['Date'].dt.tz_localize('CET')  # fix bug for altair visualization, that assumes dates are in UTC
