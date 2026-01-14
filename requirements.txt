@@ -1,8 +1,8 @@
 streamlit==1.41.1  # original app ran with 1.14.0, then with 1.41.1
-rich == 10.14.0    # required by streamlit
+rich == 13.9.4    # required by streamlit
 pandas==1.5.1      # original app ran with 1.5.1
 lxml==4.9.1
 plotly==5.13.0
 numpy==1.26.4     # old pandas is not compatible with numpy >= 2.0.0 (June 2024), thus force last numpy 1. version i.e. 1.26.4
 html5lib == 1.0.1   
-beautifulsoup4 == 4.10.1    # required for web scraping, although latest version 4.14.3 (January 2026) produces errors so it is downgraded
+beautifulsoup4 == 4.14.0    # required for web scraping, although latest version 4.14.3 (January 2026) produces errors so it is downgraded
