@@ -4,3 +4,4 @@ lxml==4.9.1
 plotly==5.13.0
 numpy==1.26.4     # old pandas is not compatible with numpy >= 2.0.0 (June 2024), thus force last numpy 1. version
 html5lib == 1.1   
+beautifulsoup4 == 4.14.3    # required for web scraping
